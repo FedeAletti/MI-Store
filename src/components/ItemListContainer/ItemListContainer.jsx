@@ -4,8 +4,8 @@ import { getItem } from "../../service/asyncmock"
 import ItemList from "./ItemList/ItemList"
 
 const ItemListContainer = ({ greetings }) => {
-	const { categoryId } = useParams()
 	const [category, setCategory] = useState()
+	const { categoryId } = useParams()
 
 	useEffect(() => {
 		if (categoryId === undefined) {

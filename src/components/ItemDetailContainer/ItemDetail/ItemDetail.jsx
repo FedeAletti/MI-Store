@@ -1,10 +1,15 @@
-import React from "react"
+import React, { useState } from "react"
+import { Link } from "react-router-dom"
 import ItemCount from "../../ItemCount/ItemCount"
 
 const ItemDetail = ({ producto }) => {
-	const { title, brand, price, stock, picUrl, description, category } = producto
+	const { title, brand, price, stock, picUrl, description, category, id } =
+		producto
+
+	const [terminar, setTerminar] = useState(false)
 
 	const onAdd = (count) => {
+		setTerminar(true)
 		console.log(count)
 	}
 
@@ -25,7 +30,16 @@ const ItemDetail = ({ producto }) => {
 							<span className="font-bold text-5xl leading-none align-baseline">
 								${price}
 							</span>
-							<ItemCount stock={stock} onAdd={onAdd} />
+							{terminar ? (
+								<Link
+									to="/cart"
+									className="btn bg-primary text-white btn-block "
+								>
+									Terminar Compra
+								</Link>
+							) : (
+								<ItemCount stock={stock} onAdd={onAdd} id={id} />
+							)}
 						</div>
 					</div>
 				</div>
